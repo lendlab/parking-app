@@ -1,21 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import { StatusBar } from "react-native";
+import Login from "./screens/Login";
+import AppNavigator from "./navigators/AppNavigator";
+import AppLoading from "expo-app-loading";
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const isLoggedIn = false;
+  let [fontsLoaded] = useFonts({
+    Inter_900Black,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <>
+        <StatusBar backgroundColor="#181818" barStyle="light-content" />
+        <NavigationContainer>
+          {isLoggedIn ? (
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="Login" component={Login} />
+            </Stack.Navigator>
+          ) : (
+            <AppNavigator />
+          )}
+        </NavigationContainer>
+      </>
+    );
+  }
+}
