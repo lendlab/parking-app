@@ -1,57 +1,65 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AppLoading from "expo-app-loading";
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
-import Home from "../screens/Home";
-import Parkings from "../screens/Parkings";
+import { useMe } from "../graphql/auth/custom-hooks";
+import Login from "../screens/Login";
+import Map from "../screens/Map";
+import TabNavigator from "./TabNavigator";
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const AppNavigator = () => {
+  let isLoggedIn = false;
+
+  const { loading, data } = useMe();
+
+  if (loading) {
+    return <AppLoading />;
+  } else if (data?.me) {
+    isLoggedIn = true;
+  } else {
+    isLoggedIn = false;
+  }
+
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          position: "absolute",
-          backgroundColor: "#181818",
-          borderTopWidth: 1,
-          borderTopColor: "#2a2a2a",
-        },
-        headerShown: false,
-      }}
-      tabBarOptions={{
-        activeTintColor: "#fff",
-        labelStyle: {
-          fontWeight: "bold",
-        },
-      }}
-      initialRouteName="Parkings"
-    >
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="home-outline" color={color} size={18} />
-          ),
-          tabBarLabel: () => null,
-        }}
-        name="Inicio"
-        component={Home}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="car-sport-outline" color={color} size={18} />
-          ),
-          tabBarLabel: () => null,
-        }}
-        name="Parkings"
-        component={Parkings}
-      />
-    </Tab.Navigator>
+    <NavigationContainer>
+      {isLoggedIn ? (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="App"
+            component={TabNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Map"
+            component={Map}
+            options={({ route }) => ({
+              title: route.params.title,
+              headerTitleStyle: {
+                color: "#fff",
+              },
+              headerTintColor: "#ffffff",
+              headerStyle: {
+                height: 75,
+                backgroundColor: "#202020",
+              },
+            })}
+          />
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Login" component={Login} />
+        </Stack.Navigator>
+      )}
+    </NavigationContainer>
   );
 };
 
 export default AppNavigator;
-
-const TabBarIcon = (props) => {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-};
