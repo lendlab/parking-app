@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar } from "react-native";
+import { SafeAreaView, StatusBar } from "react-native";
 
 import AppLoading from "expo-app-loading";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
