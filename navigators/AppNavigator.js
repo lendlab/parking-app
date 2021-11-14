@@ -1,11 +1,11 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AppLoading from "expo-app-loading";
 import React from "react";
 import { useMe } from "../graphql/auth/custom-hooks";
 import Login from "../screens/Login";
-import Map from "../screens/Map";
-import TabNavigator from "./TabNavigator";
+
+import LoggedNavigator from "./LoggedNavigator";
 
 const Stack = createStackNavigator();
 
@@ -25,30 +25,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       {isLoggedIn ? (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="App"
-            component={TabNavigator}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Map"
-            component={Map}
-            options={({ route }) => ({
-              title: route.params.title,
-              headerTitleStyle: {
-                color: "#fff",
-              },
-              headerTintColor: "#ffffff",
-              headerStyle: {
-                height: 75,
-                backgroundColor: "#202020",
-              },
-            })}
-          />
-        </Stack.Navigator>
+        <LoggedNavigator />
       ) : (
         <Stack.Navigator
           screenOptions={{
