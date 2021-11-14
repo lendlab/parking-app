@@ -1,19 +1,18 @@
-import React from "react";
-import {
-  TouchableHighlightBase,
-  TouchableOpacityBase,
-  View,
-} from "react-native";
-import { Image, Text } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { View } from "react-native";
+import { Image, Text } from "react-native-elements";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
-const ParkItem = () => {
+const ParkItem = ({ park }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate("Map", { title: "Parque nashee" });
+    navigation.navigate("Map", {
+      title: park.parking_name,
+      id: park.parking_id,
+    });
   };
 
   return (
@@ -60,7 +59,7 @@ const ParkItem = () => {
               marginBottom: 12,
             }}
           >
-            PARKING GODEANO
+            {park.parking_name}
           </Text>
           <View
             style={{
