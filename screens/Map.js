@@ -1,11 +1,10 @@
-import { useRoute } from "@react-navigation/native";
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import SeePlaces from "../components/SeePlaces";
 
 const Map = () => {
-  const route = useRoute();
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState(null);
 
@@ -56,6 +55,8 @@ const Map = () => {
           ></Marker>
         )}
       </MapView>
+
+      <SeePlaces />
     </View>
   );
 };
