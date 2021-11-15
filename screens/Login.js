@@ -15,7 +15,6 @@ import { useLogin } from "../graphql/auth/custom-hooks";
 
 const Login = () => {
   const [login, { loading }] = useLogin();
-
   return (
     <>
       <SafeAreaView backgroundColor="#181818"></SafeAreaView>
@@ -40,6 +39,7 @@ const Login = () => {
                   style={{ color: "#fff" }}
                   h1Style={{
                     fontSize: 42,
+                    fontWeight: "bold",
                   }}
                   h1
                 >
