@@ -10,6 +10,7 @@ import AppNavigator from "./navigators/AppNavigator";
 const client = new ApolloClient({
   uri: "https://parking-app-backend-ckjzi.ondigitalocean.app/graphql",
   cache: new InMemoryCache(),
+  credentials: "include",
 });
 
 export default function App() {
