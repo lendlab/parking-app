@@ -7,6 +7,7 @@ export const GET_PARKING_PLACES = gql`
         place_id
         occuped
         place_number
+        state
       }
     }
   }
