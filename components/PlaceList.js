@@ -1,12 +1,18 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useParkingPlaces } from "../graphql/places/custom-hooks";
 import PlaceItem from "./PlaceItem";
 
 const PlaceList = ({ id, actionSheet }) => {
   const { loading, data, error } = useParkingPlaces(id);
 
-  if (loading || !data) return <Text>Loading...</Text>;
+  if (loading || !data) return <ActivityIndicator color="#fff" />;
 
   return (
     <ScrollView>
