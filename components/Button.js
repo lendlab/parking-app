@@ -1,7 +1,7 @@
 import React from "react";
 import { Button as NativeButton } from "react-native-elements";
 
-const Button = (props) => {
+const Button = ({ secondary, ...props }) => {
   return (
     <NativeButton
       containerStyle={{
@@ -9,8 +9,10 @@ const Button = (props) => {
       }}
       buttonStyle={{
         padding: 12,
-        backgroundColor: "#f70050",
+        backgroundColor: secondary ? "transparent" : "#f70050",
         borderRadius: 8,
+        borderWidth: secondary && 1,
+        borderColor: secondary && "#444444",
       }}
       titleStyle={{
         fontSize: 14,
