@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import Home from "../screens/Home";
 import Parkings from "../screens/Parkings";
+import Profile from "../screens/Profile";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,6 +46,16 @@ const TabNavigator = () => {
         }}
         name="Parkings"
         component={Parkings}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="person-outline" color={color} size={18} />
+          ),
+          tabBarLabel: () => null,
+        }}
+        name="Profile"
+        component={Profile}
       />
     </Tab.Navigator>
   );
