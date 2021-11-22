@@ -30,7 +30,7 @@ const ParkItem = ({ park }) => {
       >
         <Image
           source={{
-            uri: "https://okdiario.com/img/2018/01/25/parking.jpg",
+            uri: `${park.image}`,
           }}
           style={{
             width: 120,
@@ -73,7 +73,7 @@ const ParkItem = ({ park }) => {
                 marginLeft: 8,
               }}
             >
-              34 minutos
+              {park.minutes} minutos
             </Text>
           </View>
         </View>
