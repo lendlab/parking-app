@@ -28,7 +28,7 @@ const Profile = () => {
           containerStyle={{
             backgroundColor: "#2a2a2a",
           }}
-          title="GOOD"
+          title={data?.me.name}
         ></Avatar>
         <Text
           h1
