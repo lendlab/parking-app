@@ -11,14 +11,6 @@ const Countdown = () => {
 
   const { data } = route.params;
 
-  var exp = moment(data.reservation_end, "DD.MM.YYYY HH:mm:ss");
-  moment().diff(exp, "minutes");
-
-  console.log({
-    seconds: moment().diff(exp, "minutes"),
-    fecha: moment(data.reservation_end, "DD.MM.YYYY HH:mm:ss"),
-  });
-
   return (
     <>
       <SafeAreaView backgroundColor="#181818"></SafeAreaView>
@@ -55,7 +47,7 @@ const Countdown = () => {
             color: "white",
             marginTop: 12,
           }}
-          until={400000}
+          until={20000}
           onFinish={() => alert("finished")}
           onPress={() => alert("hello")}
           size={20}
