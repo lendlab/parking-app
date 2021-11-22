@@ -9,16 +9,26 @@ const Timer = () => {
 
   const route = useRoute();
 
+  let arrived = false;
+
   const { data } = route.params;
 
   React.useEffect(
     () =>
       navigation.addListener("beforeRemove", (e) => {
+        if (arrived) {
+          return;
+        }
+
         e.preventDefault();
 
         Alert.alert("Espera a que la reserva termine");
       }),
-    [navigation]
+
+    setTimeout(function () {
+      arrived = true;
+      navigation.replace("CountDown");
+    }, 10000)[navigation]
   );
 
   return (
