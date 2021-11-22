@@ -5,6 +5,8 @@ export const GET_PARKINGS = gql`
     getParkings {
       parking_id
       parking_name
+      image
+      minutes
       longitude
       latitude
     }
