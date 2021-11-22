@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "para el franco",
+    "githubUrl": "https://github.com/MarcosCianzio"
   }
 }
