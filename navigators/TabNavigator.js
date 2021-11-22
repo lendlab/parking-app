@@ -1,7 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import Home from "../screens/Home";
 import Parkings from "../screens/Parkings";
 import Profile from "../screens/Profile";
 
@@ -27,16 +26,6 @@ const TabNavigator = () => {
       }}
       initialRouteName="Parkings"
     >
-      <Tab.Screen
-        options={{
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="home-outline" color={color} size={18} />
-          ),
-          tabBarLabel: () => null,
-        }}
-        name="Inicio"
-        component={Home}
-      />
       <Tab.Screen
         options={{
           tabBarIcon: ({ color }) => (
