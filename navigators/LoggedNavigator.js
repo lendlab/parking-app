@@ -31,14 +31,14 @@ const LoggedNavigator = () => {
             })}
             initialParams={{ data: data.getMyActiveReservations }}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="CountDown"
             component={Countdown}
             options={() => ({
               headerShown: false,
             })}
             initialParams={{ data: data.getMyActiveReservations }}
-          /> */}
+          />
         </>
       ) : (
         <>
