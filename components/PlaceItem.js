@@ -15,7 +15,7 @@ const PlaceItem = ({ place, actionSheet }) => {
         navigation.navigate("Reserve", {
           placeId: place.place_id,
           parkingId: route.params.id,
-          placeName: `Lugar ${place.place_id}`,
+          placeName: `Lugar ${place.place_number}`,
         });
         actionSheet.current?.setModalVisible();
       }}
@@ -38,7 +38,7 @@ const PlaceItem = ({ place, actionSheet }) => {
         }}
       >
         <ListItem.Title style={{ color: "#fff", marginRight: 12 }}>
-          Lugar #{place.place_id}
+          Lugar #{place.place_number}
         </ListItem.Title>
 
         {place.state == "Solicitado" ? (
